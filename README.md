@@ -1,26 +1,30 @@
-# Data-Warehouse+ Data Modeling 
-DATA WAREHOUSIN# Data Warehouse Projects
+# End-to-End Data Warehouse with PySpark & Medallion Architecture
 
-This repository demonstrates a **star-schema data warehouse design and slowly changing dimesnions type 1 and type 2** built using SQL.  
-It includes **fact and dimension tables**, along with ETL scripts to populate them.  
+## 🚀 Project Overview
+This project demonstrates a production-grade data pipeline using **PySpark** and the **Medallion Architecture**. It handles the full lifecycle of data from raw ingestion to a structured Star Schema, implementing advanced Data Warehousing techniques like **Slowly Changing Dimensions (SCD)**.
 
----
+## 🏗️ Architecture
+- **Bronze (Ingestion):** Raw data ingestion from source systems.
+- **Silver (Staging):** Data cleaning, schema enforcement, and implementation of **SCD Type 1 & Type 2** logic.
+- **Gold (Analytics):** Production-ready **Fact and Dimension tables** optimized for BI reporting.
 
-## Project Overview
+## 🛠️ Tech Stack
+- **Language:** Python (PySpark)
+- **Storage:** Delta Lake (for ACID transactions)
+- **Orchestration:** Modular Python scripts
+- **Environment:** Databricks / Local Spark
 
-**Fact Table:** `fact_sales`  
-- Contains transactional sales data  
-- Columns include: `OrderID`, `DimDateKey`, `CustomerID`, `ProductID`, `Quantity`, `UnitPrice`, `TotalAmount`  
-- Linked to **dimension tables** using surrogate keys (`DimDateKey`, `CustomerID`, `ProductID`)  
+## 📂 Repository Structure
+- `src/bronze/`: Ingestion logic.
+- `src/silver/`: SCD Type 1/2 logic and cleaning.
+- `src/gold/`: Fact and Dimension table modeling.
+- `src/utils/`: Data quality and validation checks.
+- `notebooks/`: Exploratory Data Analysis (EDA) and prototyping.
 
-**Dimension Tables:**  
-1. **dim_date**: Stores all dates and corresponding `DimDateKey`  
-2. **dim_customer**: Stores customer details (`CustomerID`, `CustomerName`, `CustomerEmail`)  
-3. **dim_product**: Stores product details (`ProductID`, `ProductName`, `ProductCategory`)
-   
-
-**Views:**  
-- `view_dimdate`: Generates `DimDateKey` using `ROW_NUMBER()` over distinct dates  
+## 📈 Key Features
+- **SCD Type 2:** Tracks historical changes for key dimensions (e.g., Product/Customer).
+- **Data Validation:** Automated checks for nulls and schema drifts before loading Gold tables.
+- **Modular Design:** Code is organized into reusable modules rather than monolithic notebooks.
 
 ---
 
